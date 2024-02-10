@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+</head>
+<body>
+    
+    <!-- 검색창 -->
+    <div class="search-area">
+        <form method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <div class="search-box-container">
+                <div class="input-container">
+                    <input type="search" name="searched" aria-label="Search" value="{{ searched }}" placeholder="기업명을 입력하세요" />
+                </div>
+                <button type="submit">검색</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 검색 결과 -->
+    <div>
+        {% if searched %}
+            {% if company_infos %}
+                <img src="https://s3.ap-northeast-2.amazonaws.com/jmjp-bucket/{{searched}} 시각화 이미지.png" alt="">
+                {% for company_info in company_infos %}
+                    <div class="textBundle">
+                    <p class="company_name">기업명: {{company_info.company_name}}</p>
+                    <p class="company_code">종목코드: {{company_info.company_code}}</p>
+                    <p class="industry">업종명: {{company_info.industry}}</p>
+                    <p class="website">홈페이지: {{company_info.website}}</p>
+                    <p class="gpt_comment">AI 요약: {{company_info.gpt_comment}}</p>
+                    <p class="sentiment_analysis_ratio">긍부정 퍼센트: {{company_info.sentiment_analysis_ratio}}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>검색 결과가 없습니다.</p>
+            {% endif %}
+        {% else %}
+                <p>검색어를 입력해주세요.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
