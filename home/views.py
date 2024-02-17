@@ -9,15 +9,8 @@ def index(request):
 def search(request):
     if request.method == 'POST':
         searched = request.POST['searched']        
-        company_infos = CompanyInfo.objects.filter(company_name=searched)
-        return render(request, 'searched.html', {'searched': searched, 'company_infos': company_infos})
+        corp_infos = CorpInfo.objects.filter(stock_name=searched)
+        balance_sheets = Top500.objects.filter(종목명=searched)
+        return render(request, 'searched.html', {'searched': searched, 'corp_infos': corp_infos, 'balance_sheets': balance_sheets})
     else:
         return render(request, 'searched.html', {})
-
-# def search(request):
-#     if request.method == 'POST':
-#         searched = request.POST['searched']        
-#         # recipes = Recipe.objects.filter(name__contains=searched)
-#         return render(request, 'searched.html', {'searched': searched})
-#     else:
-#         return render(request, 'searched.html', {'searched': searched})
