@@ -1,27 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서비스 홈</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JMJP</title>
+  <link rel='stylesheet' type="text/css" href="../static/css/style.css">
+
+      <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
-
-<body>
-
-    <!-- 검색창 -->
-    <div class="search-area">
-        <form method="POST" action="{% url 'search' %}">
-            {% csrf_token %}
-            <div class="search-box-container">
-                <div class="input-container">
-                    <input type="search" name="searched" aria-label="Search" placeholder="기업명을 입력하세요" />
-                </div>
-                <button type="submit">검색</button>
-            </div>
-        </form>
+   
+  <body>  
+    
+    <div class="container">
+      <!-- action 장고로 수정 -->
+      <div class = "title">JMJP</div>
+      <form method="POST" action="{% url 'search' %}" class="search-bar">
+        {% csrf_token %}
+        <input type="text" type="search" placeholder="회사명을 검색해 주세요." name="searched" />
+        <button type="submit"><img src="../static/images/search.png" alt=""></button>
+      </form>
+    
     </div>
-
-</body>
-
+  </body>
+  
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
 </html>

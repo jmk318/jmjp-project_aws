@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+</head>
+<body>
+    
+    <!-- 검색창 -->
+    <div class="search-area">
+        <form method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <div class="search-box-container">
+                <div class="input-container">
+                    <input type="search" name="searched" aria-label="Search" value="{{ searched }}" placeholder="기업명을 입력하세요" />
+                </div>
+                <button type="submit">검색</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 검색 결과 -->
+    <div>
+        {% if searched %}
+            {% if balance_sheets %}
+                <img src="https://s3.ap-northeast-2.amazonaws.com/jmjp-bucket/{{searched}} 시각화 이미지.png" alt="">
+                {% for corp_info in corp_infos %}
+                    <div class="textBundle">
+                    <p class="stock_name">기업명: {{corp_info.stock_name}}</p>
+                    <p class="stock_code">종목코드: {{corp_info.stock_code}}</p>
+                    <p class="website">홈페이지: {{corp_info.website}}</p>
+                    <p class="gpt_comment">AI 요약: {{corp_info.gpt_comment}}</p>
+                    <p class="sentiment_analysis_ratio">긍부정 퍼센트: {{corp_info.sentiment_analysis_ratio}}</p>
+                    </div>
+                {% endfor %}
+                {% for balance_sheet in balance_sheets %}
+                <div class="textBundle">
+                    <p>기준: {{balance_sheet.기준}}</p>
+                    <p>시장: {{balance_sheet.시장}}</p>
+                    <p>자산총계: {{balance_sheet.자산총계}}</p>
+                    <p>자본금: {{balance_sheet.자본금}}</p>
+                    <p>자본총계: {{balance_sheet.자본총계}}</p>
+                    <p>매출액: {{balance_sheet.매출액}}</p>
+                    <p>영업이익: {{balance_sheet.영업이익}}</p>
+                    <p>순이익: {{balance_sheet.순이익}}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>검색 결과가 없습니다.</p>
+            {% endif %}
+        {% else %}
+                <p>검색어를 입력해주세요.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
