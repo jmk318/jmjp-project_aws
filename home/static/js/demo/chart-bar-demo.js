@@ -1,3 +1,9 @@
+
+// 이 포맷으로 hmtl에서 부르기
+var company_name = document.getElementById('searching').innerHTML; 
+
+
+
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
@@ -30,16 +36,20 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
+var positive_prev1 = document.getElementById('어제').innerHTML; 
+var positive_prev2 = document.getElementById('지난주').innerHTML; 
+var positive_prev3 = document.getElementById('지난달').innerHTML; 
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["어제", "지난주", "지난달"],
     datasets: [{
-      label: "Revenue",
+      label: "Sentiment-analysis",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      // data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: [positive_prev1, positive_prev2, positive_prev3],
     }],
   },
   options: {
@@ -69,12 +79,12 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
-          maxTicksLimit: 5,
+          max: 100,
+          maxTicksLimit: 1,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value);
           }
         },
         gridLines: {
@@ -104,7 +114,7 @@ var myBarChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel +': '+ (tooltipItem.yLabel);
         }
       }
     },

@@ -1,8 +1,42 @@
-var x = require("./csv")
-console.log(x.rowData)
-var newData = x.rowData[1].slice(1,5)
+var company_name = document.getElementById('searching').innerHTML
+var filename = company_name + '_포괄손익계산서.csv'
+
+  
+
+var newData=[];
+
+$.ajax({
+  url:"../static/csv/" + filename,
+  async:false,
+  dataType: "text",
+}).done(successFunction) 
 
 
+
+function successFunction(data) {
+
+var allRows = data.split(/\r?\n|\r/);
+
+var table = "<table>";
+for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+  if (singleRow === 0) {
+    table += "<thead>";
+    table += "<tr>";
+  } else {
+    table += "<tr>";
+  }
+  var rowCells = allRows[singleRow].split(",");
+  newData = newData.concat(rowCells);
+  
+}
+ 
+};
+
+dataSet =  newData.slice(6,10)
+if (company_name == 'KB금융' | company_name == '기업은행' )
+{
+  dataSet = newData.slice(7,11)
+}
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
@@ -38,9 +72,9 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr"],
+    labels: ["2022년","2021년", "2020년","2019년"],
     datasets: [{
-      label: "Earnings",
+      label: "매출액",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -52,7 +86,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: newData,
+      data: dataSet,
     }],
   },
   options: {
@@ -84,7 +118,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value);
           }
         },
         gridLines: {
@@ -116,9 +150,17 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + number_format(tooltipItem.yLabel);
         }
       }
     }
   }
 });
+
+
+//영업이익 등 다른 항목 area 선택 시 
+// document.getElementById('selected').addEventListener('click',tosales);
+
+// function tosales() {
+//   docu
+// }

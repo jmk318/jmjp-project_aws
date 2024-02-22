@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'storages',
     # apps
     'home'
 ]
@@ -117,6 +118,17 @@ USE_I18N = True
 
 USE_TZ = True
 
+# S3 Storage
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# AWS Access
+# AWS_REGION = local_settings.AWS_REGION
+# AWS_ACCESS_KEY_ID = local_settings.AWS_ACCESS_KEY_ID
+# AWS_SECRET_ACCESS_KEY = local_settings.AWS_SECRET_ACCESS_KEY
+# AWS_STORAGE_BUCKET_NAME = local_settings.AWS_STORAGE_BUCKET_NAME
+
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -128,6 +140,9 @@ STATICFILES_DIRS=[
 ]
 
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
+
+# STATIC_URL = "http://%s/static/" % AWS_S3_CUSTOM_DOMAIN
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -1,3 +1,36 @@
+// var newData=[];
+// $.ajax({
+//   url:" ../static/csv/kia.csv",
+//   async:false,
+//   dataType: "text",
+// }).done(successFunction)
+
+
+// function successFunction(data) {
+
+// var allRows = data.split(/\r?\n|\r/);
+
+// var table = "<table>";
+// for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+//   if (singleRow === 0) {
+//     table += "<thead>";
+//     table += "<tr>";
+//   } else {
+//     table += "<tr>";
+//   }
+//   var rowCells = allRows[singleRow].split(",");
+//   newData = newData.concat(rowCells);
+  
+// }
+
+
+// }
+
+// var positive =
+// var negative = $('#negative')
+var a = document.getElementById('positive').innerHTML
+var b = document.getElementById('negative').innerHTML
+
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
@@ -9,9 +42,9 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["긍정", "부정"],
     datasets: [{
-      data: [70, 30,],
-      backgroundColor: ['#4e73df', '#1cc88a'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673'],
+      data: [a,b],
+      backgroundColor: ['#4e73df', '#dc3545'],
+      hoverBackgroundColor: ['#2e59d9', '#de0d20'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },

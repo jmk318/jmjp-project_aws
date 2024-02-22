@@ -9,10 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>JMJP</title>
-    <!-- fixed position -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <!-- Custom fonts for this template-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -21,11 +20,10 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    
 </head>
 
 <body id="page-top">
-    
+
     <!-- Page Wrapper -->
     
 
@@ -44,7 +42,7 @@
                     <!-- Topbar Search -->
                     {% if corp_infos %}
                     {% for corp_info in corp_infos %}
-                    <div><h1 id = "searching" style="padding-left: 20px; font-weight: bold;" >{{corp_info.stock_name}}</h1></div>
+                    <div><h1 style="padding-left: 20px; font-weight: bold;" >{{corp_info.stock_name}}</h1></div>
                     {% endfor %}
                     {% else %}
                     <div><h1 style="padding-left: 20px; font-weight: bold;" >일치하는 회사명 없음</h1></div>
@@ -79,8 +77,7 @@
                     
                     <!-- Page Heading -->
                     
-                    {% if corp_infos %}
-                    {% for corp_info in corp_infos %}
+                    
                     <div><h6 class="m-0 font-weight-bold text-primary card-header py-3 d-flex flex-row align-items-center justify-content-between">요약 재무 정보</h6></div>
 
                     
@@ -93,12 +90,12 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div  class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 수익성</div>
-                                            <div id="수익성" class="h5 mb-0 font-weight-bold text-gray-800">A+</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">A+</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -113,10 +110,10 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 성장성</div>
-                                            <div id="성장성" class="h5 mb-0 font-weight-bold text-gray-800">B+</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">B+</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-arrow-up fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -133,9 +130,15 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div id="건전성" class="h5 mb-0 mr-3 font-weight-bold text-gray-800">A-</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">A-</div>
                                                 </div>
-                                                
+                                                <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -154,10 +157,10 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 기업 규모</div>
-                                            <div id="기업규모" class="h5 mb-0 font-weight-bold text-gray-800">B+</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">B+</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -175,13 +178,8 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between ">
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">재무 정보 추이</h6>
-                                    <div class="btn-group">
-                                        
-                                       </div>
-                                      
-                                      
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -189,9 +187,9 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
-                
-                                            <button id ="selected" class="dropdown-item">영업이익</button>
-                                            <button class="dropdown-item" href="#">매출액</button>
+                                            
+                                            <a class="dropdown-item" href="#">연간 기준</a>
+                                            <a class="dropdown-item" href="#">분기 기준</a>
                                             
                                         </div>
                                     </div>
@@ -211,7 +209,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">AI 기사 감성 분석 (오늘 기준)</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">기사 감성 분석</h6>
                                     
                                 </div>
                                 <!-- Card Body -->
@@ -221,11 +219,11 @@
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2"  >
-                                            <i class="fas fa-circle text-primary"></i> 긍정 
+                                            <i class="fas fa-circle text-primary"></i> 긍정
                                             <span id = "positive">{{positive}}</span>%
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-danger"></i> 부정
+                                            <i class="fas fa-circle text-success"></i> 부정
                                             <span id = "negative">{{negative}}</span>%
                                         </span>
                                         
@@ -234,56 +232,69 @@
                             </div>
                         </div>
                     </div>
+
                 
 
                 
 <!-- Begin Page Content -->
-<div class="col-lg-12" style = "display: flex ;">
+<div class="container-fluid">
+
     <!-- Page Heading -->
     <hr>
    
     <!-- DataTales Example -->
-    <div class="col-lg-6 mb-4" >
-        <!-- Illustrations -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-              AI 기사 분석  
-            </h6>
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">기사 AI 요약</h6>
+      </div>
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-bordered"  width="100%" cellspacing="0">
+                  <thead>
+                      <tr>
+                          <th>sl</th>
+                          <th>ai</th>
+                          <th>Office</th>
+                          <th>Age</th>
+                          <th>Start date</th>
+                         
+                      </tr>
+                  </thead>
+                  
+                
+                  <tbody>
+                      <tr>
+                          <td>Tiger Nixon</td>
+                          <td>System Architect</td>
+                          <td>Edinburgh</td>
+                          <td>61</td>
+                          <td>2011/04/25</td>
+                          
+                      </tr>
+                      <tr>
+                          <td>Garrett Winters</td>
+                          <td>Accountant</td>
+                          <td>Tokyo</td>
+                          <td>63</td>
+                          <td>2011/07/25</td>
+                         
+                      </tr>
+                      <tr>
+                          <td>Ashton Cox</td>
+                          <td>Junior Technical Author</td>
+                          <td>San Francisco</td>
+                          <td>66</td>
+                          <td>2009/01/12</td>
+                          
+                      </tr>
+                     
+                    </tr>
+                      
+                  </tbody>
+              </table>
           </div>
-          <div class="card-body">
-            <div class="text-center">
-              <img
-                class="img-fluid px-3 px-sm-4 mt-3 mb-4"
-                style="width: 25rem"
-                src="{% static 'images/undraw_conference_re_2yld.svg' %}"
-                alt="..."
-              />
-            </div>
-            AI comments : {{corp_info.gpt_comment}}
-          </div>
-        </div>
-    </div>  
-    <div  class = "card col-lg-6 mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">감성 분석 추이 (긍정 기준)</h6>
-          </div>
-          
-          <div class="card-body">
-            <div class="chart-bar">
-              <canvas id="myBarChart" ></canvas>
-              <br>
-              <div style="font-size:small">
-              * 해당
-              <span id="어제">{{ positive_prev1 }}</span>, 
-              <span id="지난주">{{ positive_prev2 }}</span>, 
-              <span id="지난달">{{ positive_prev3 }}</span> 값은 긍정 기준값입니다.</div>
-            </div>
-          </div>
-    </div>  
-   </div>
-    </div>
-
+      </div>
+  </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">상세 재무 정보</h6>
@@ -291,8 +302,8 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="ai" width="100%" cellspacing="0">
-                    <thead >
-                        <tr >
+                    <thead>
+                        <tr>
                             <th>항목</th>
                             <th>2022년</th>
                             <th>2021년</th>
@@ -301,7 +312,7 @@
                             
                         </tr>
                     </thead>
-                    <tbody style="font-weight: bold;" >
+                    <tbody>
                         <tr>
                             <td>Tiger Nixon</td>
                             <td>System Architect</td>
@@ -358,25 +369,16 @@
                             <td>2011/04/25</td>
                            
                         </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                           
-                        </tr>
-                        
+
+                      </tr>
+                      </tr>
                         
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    {% endfor %}
-    {% else %}
-    <div>검색 결과가 없습니다.</div>
-    {% endif %}
+
 </div>
 <!-- /.container-fluid -->
 
@@ -399,11 +401,12 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    
 
+
+        
     <!-- jquery , changeHTML linking-->
-    
-   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/demo/changeHTML.js' %}"></script>
         
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
@@ -416,19 +419,11 @@
 
     <!-- Page level plugins -->
     <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-    
+
     <!-- Page level custom scripts -->
-
-    
-    
-    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
     <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-    <script src="{% static 'js/demo/chart-bar-demo.js' %}"></script>
-    <script charset = 'utf-8' src="{% static 'js/demo/changeHTML.js' %}"></script>
-    
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
 
-
-   
 </body>
 
 </html>
