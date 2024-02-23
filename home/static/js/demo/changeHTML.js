@@ -29,6 +29,12 @@ for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
 
 
 const moneyFormat = (value) => {
+  flag = false
+  if (value<0)
+  { 
+    value = -value
+    flag = true;
+  }
   const numbers = [
       numbering(value % 100000000000000000000, 10000000000000000),
       numbering(value % 10000000000000000, 1000000000000),
@@ -36,10 +42,14 @@ const moneyFormat = (value) => {
       numbering(value % 100000000, 10000),
       value % 10000
   ]
+  
+  if (flag){ 
+    return '-'+ setUnitText(numbers).filter(number => !!number).join(' ');}
 
-  return setUnitText(numbers)
-          .filter(number => !!number)
-          .join(' ');
+  else {
+      return setUnitText(numbers).filter(number => !!number).join(' ');
+      }
+
 }
 
 const setUnitText = (numbers) => {
@@ -73,6 +83,8 @@ for (var k =1; k< 9; k++){
 
 }
 
+
+
 for(var i=0; i < 4; i++){
   var dict = {};
   var term = ['수익성','성장성','건전성','기업규모'];
@@ -97,7 +109,7 @@ for(var i=0; i < 4; i++){
 
       
       var rowCells = allRows[singleRow].split(",");
-      dict['\uFEFF'+ rowCells[1]] = '\uFEFF'+rowCells[2];      
+      dict['\uFEFF'+ rowCells[1]] = '\uFEFF'+rowCells[2];   
       
     }
    
@@ -106,7 +118,7 @@ for(var i=0; i < 4; i++){
 
     $('#'+term[i]).text(dict['\uFEFF'+ company_name])
     
-      
+  
   
   
     }
@@ -119,3 +131,24 @@ var z =  document.getElementById('지난달').innerHTML;
 $('#어제').text(x);
 $('#지난주').text(y);
 $('#지난달').text(z);
+
+//ai 코멘트바꾸기 
+
+var comment = document.getElementById('comment').innerText
+
+removing_list = ['<b>','</b>','기사선택과 인사이트 제시:','기사선택: ',' 선택된: 기사']
+removing_list2 = ['1. ', '2. ', '3. ','Insight 제시:']
+for (var i =0; i < 5 ;i++){
+
+  comment=comment.replace(removing_list[i],'');
+  
+};
+
+for (var i =0; i< 4 ;i++){
+  
+  comment=comment.replace(removing_list2[i],'\n' +' '+ removing_list2[i] )
+  
+};
+
+console.log(comment)
+document.getElementById("comment").innerText = comment

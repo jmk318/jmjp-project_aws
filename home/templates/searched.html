@@ -238,13 +238,10 @@
 
                 
 <!-- Begin Page Content -->
-<div class="col-lg-12" style = "display: flex ;">
-    <!-- Page Heading -->
+<!-- <div class="col-lg-12" style = "display: flex ;">
     <hr>
    
-    <!-- DataTales Example -->
     <div class="col-lg-6 mb-4" >
-        <!-- Illustrations -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
@@ -281,7 +278,51 @@
             </div>
           </div>
     </div>  
-   </div>
+   </div> -->
+
+   <!-- Begin Page Content -->
+<div class="col-lg-12" style = "display: flex; border-radius:10px;">
+    <!-- Page Heading -->
+
+    <!-- DataTales Example -->
+    <div class="card col-lg-6 mb-4" >
+        <!-- Illustrations -->
+    
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+              AI 기사 분석  
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="text-center">
+              
+            </div>
+            
+            <span id="comment" style="line-height: 30px;">  
+             AI comments: {{corp_info.gpt_comment}}
+            </span>
+          </div>
+    </div>  
+    <div  class = "card col-lg-6 mb-4" style="margin-left:10px ;">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">감성 분석 추이(긍정 기준)</h6>
+          </div>
+          
+          <div class="card-body">
+            <div class="chart-bar">
+              <canvas id="myBarChart" ></canvas>
+              <div style="font-size:small">
+                <br>
+              * 해당
+              <span id="어제">{{ positive_prev1 }}</span>, 
+              <span id="지난주">{{ positive_prev2 }}</span>, 
+              <span id="지난달">{{ positive_prev3 }}</span> 값은 긍정 기준값입니다.</div>
+            </div>
+          </div>
+    </div>  
+    
+    </div>
+    
     </div>
 
     <div class="card shadow mb-4">
